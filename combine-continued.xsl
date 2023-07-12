@@ -24,7 +24,7 @@
          <xsl:for-each-group select="node()"
                group-starting-with="tei:*[@continued eq 'true' and normalize-space(preceding::text()[1]) != '']">
             <xsl:choose>
-               <xsl:when test="current-group()[1][@continued eq 'true']">
+               <xsl:when test="current-group()[1][@continued eq 'true'] and (current-group()[position() gt 1 and @continued = 'true'][last()], current-group()[4])[1]">
                   <xsl:variable name="final"
                      select="(current-group()[position() gt 1 and @continued = 'true'][last()], current-group()[4])[1]" />
                   <xsl:variable name="last" select="index-of(current-group(), $final)[1]"/>
